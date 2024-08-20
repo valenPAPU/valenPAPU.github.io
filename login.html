@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Olimpiculs</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #login-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .auth-links {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .auth-links a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container">
+        <h2>Iniciar sesión</h2>
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+        <div class="auth-links">
+            <p>¿No tienes cuenta? <a href="register.html">Regístrate</a></p>
+        </div>
+        <div id="error-message" class="error-message" style="display: none;">
+            Usuario o contraseña incorrectos.
+        </div>
+    </div>
+
+    <script>
+        // Función para inicializar usuarios predeterminados
+        function initializeUsers() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.length === 0) {
+                users.push({ username: 'admin', password: 'admin' });
+                localStorage.setItem('users', JSON.stringify(users));
+                window.location.href = 'admin.html';
+            }
+            else{
+                window.location.href = 'user.html'; 
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessageElement = document.getElementById('error-message');
+
+            // Inicializar usuarios predeterminados
+            initializeUsers();
+
+            // Obtener los usuarios del almacenamiento local
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // Verificar si el usuario existe y la contraseña es correcta
+            const user = users.find(user => user.username === username && user.password === password);
+            
+        
+        }
+
+        // Inicializar usuarios al cargar la página
+        initializeUsers();
+    </script>
+</body>
+</html>

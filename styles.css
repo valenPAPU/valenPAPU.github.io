@@ -1,0 +1,432 @@
+html, body {
+    background-color: black;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+}
+
+/* Agregar una superposición si es necesario */
+header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Superposición negra con 50% de opacidad */
+    z-index: 1;
+}
+
+/* Ajustar el texto para estar encima de la superposición */
+header h1 {
+    position: relative;
+    font-size: 2.5em;
+    margin: 0;
+    color: orangered;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Asegura que el texto esté sobre la imagen */
+
+}
+
+nav {
+    position: relative;
+    z-index: 1; /* Asegura que el menú esté sobre la imagen */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    z-index: 1; /* Asegura que los enlaces estén sobre la imagen */
+}
+
+#user a, #cart a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1; /* Asegura que el enlace del carrito esté sobre la imagen */
+}
+
+#filter {
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px; /* Añade algo de espacio alrededor del filtro */
+    background-color: orangered; /* Fondo gris claro para el área del filtro */
+    border-radius: 8px; /* Esquinas redondeadas */
+    border: 1px solid #ddd; /* Borde sutil */
+}
+
+#filter label {
+    font-size: 18px;
+    margin-right: 10px;
+    color: #ffffff; /* Color del texto del label */
+}
+
+#filter select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #007bff; /* Borde azul para que combine con el esquema de colores */
+    background-color: #ffffff; /* Fondo blanco para la barra desplegable */
+    color: #333; /* Color del texto en la barra desplegable */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+#filter select:focus {
+    border-color: #0056b3; /* Cambia el color del borde cuando está enfocado */
+    outline: none; /* Elimina el borde predeterminado */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Aumenta la sombra cuando está enfocado */
+}
+
+
+#productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+.product img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.product h3 {
+    margin: 10px 0;
+}
+
+.product button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product button:hover {
+    background-color: #0056b3;
+}
+
+#cart-dropdown {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    z-index: 1000;
+}
+
+#cart-items {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#cart-items p {
+    margin: 10px 0;
+}
+
+#cart-items button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#cart-items button:hover {
+    background-color: #0056b3;
+}
+
+#cart a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.auth-form {
+    display: none;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    text-align: center;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.auth-form button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-form button:hover {
+    background-color: #0056b3;
+}
+
+.auth-form p {
+    margin-top: 10px;
+}
+
+footer {
+    background-color: orangered;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+}
+
+/* Estilos para la biografía */
+#biography {
+    padding: 40px;
+    background-color: orangered; /* Fondo gris claro para la sección de biografía */
+    border-bottom: 1px solid #ddd;
+
+}
+
+#biography h2 {
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff; /* Color del título en azul */
+    
+}
+
+.biography-items {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.biography-item {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff; /* Fondo blanco para el recuadro */
+    border: 2px solid #007bff; /* Borde con color que combina */
+    border-radius: 15px; /* Esquinas redondeadas del recuadro */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave alrededor del recuadro */
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    position: relative;
+}
+
+.biography-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.biography-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.biography-image {
+    width: 400px; /* Ancho aumentado para las imágenes */
+    height: 300px; /* Altura aumentada para las imágenes */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsión */
+    border-radius: 15px; /* Redondea las esquinas de las imágenes */
+    border: 2px solid #ddd;
+}
+
+.biography-info {
+    flex: 1;
+    padding: 20px;
+    color: #333; /* Color del texto en gris oscuro */
+}
+
+/* Animación de desvanecimiento */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ajustes de animación para cada elemento */
+.biography-item:nth-child(1) { animation-delay: 0s; }
+.biography-item:nth-child(2) { animation-delay: 0.2s; }
+.biography-item:nth-child(3) { animation-delay: 0.4s; }
+.biography-item:nth-child(4) { animation-delay: 0.6s; }
+.biography-item:nth-child(5) { animation-delay: 0.8s; }
+.biography-item:nth-child(6) { animation-delay: 1s; }
+
+/* Estilos para los productos dentro de la biografía */
+.biography-products {
+    margin-top: 20px;
+}
+
+.biography-products h4 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: center;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff; /* Fondo blanco para los productos */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.product img {
+    width: 100%;
+    height: 120px; /* Ajusta según el tamaño que prefieras */
+    object-fit: cover;
+    border-radius: 10px; /* Redondea las esquinas de las imágenes */
+}
+
+.product p {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 1em;
+    color: #333;
+}
+
+/* CSS existente */
+
+.biography-item {
+    display: none;
+    margin-bottom: 40px;
+}
+
+.biography-item.active {
+    display: flex;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product p {
+    margin: 10px 0;
+    text-align: center;
+    font-size: 1em;
+    color: #333;
+}
+
+.items-container {
+    margin-bottom: 20px;
+}
+
+.purchase-container {
+    margin-top: 20px;
+    text-align: center; /* Centra el botón de compra */
+}
+
+.purchase-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+#payment-form {
+    margin-top: 20px;
+}
+
+

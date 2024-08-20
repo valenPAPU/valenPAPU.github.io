@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse - Olimpiculs</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #register-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .auth-links {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .auth-links a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message,
+        .success-message {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .success-message {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="register-container">
+        <h2>Registrarse</h2>
+        <form id="register-form" onsubmit="handleRegister(event)">
+            <label for="register-username">Nombre de usuario:</label>
+            <input type="text" id="register-username" required>
+            <label for="register-password">Contraseña:</label>
+            <input type="password" id="register-password" required>
+            <button type="submit">Registrarse</button>
+        </form>
+        <div class="auth-links">
+            <p>¿Ya tienes cuenta? <a href="incios.html">Inicia sesión</a></p>
+        </div>
+        <div id="message" class="error-message" style="display: none;"></div>
+        <div id="success-message" class="success-message" style="display: none;">¡Registro exitoso! </div>
+    </div>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('register-username').value;
+            const password = document.getElementById('register-password').value;
+            const messageElement = document.getElementById('message');
+            const successMessageElement = document.getElementById('success-message');
+
+            // Verificar si el nombre de usuario ya está registrado
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const userExists = users.some(user => user.username === username);
+
+            if (userExists) {
+                messageElement.textContent = 'El nombre de usuario ya está registrado.';
+                messageElement.style.display = 'block';
+                successMessageElement.style.display = 'none';
+                return;
+            }
+
+            // Agregar el nuevo usuario al almacenamiento local
+            users.push({ username, password });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Mostrar mensaje de éxito y ocultar mensaje de error
+            successMessageElement.style.display = 'block';
+            messageElement.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
